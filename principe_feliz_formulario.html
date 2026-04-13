@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Príncipe Feliz — Actividades</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --gold: #b8860b;
+    --gold-light: #f0d080;
+    --cream: #faf8f2;
+    --parchment: #f3ede0;
+    --blue-deep: #1e3a5f;
+    --blue-mid: #2d5986;
+    --blue-light: #e8f0f8;
+    --green-soft: #e8f5e8;
+    --red-soft: #fdeaea;
+    --border: #d4c5a0;
+    --shadow: rgba(26,26,46,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .site-header {
+    background: var(--blue-deep);
+    padding: 40px 24px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      45deg, transparent, transparent 40px,
+      rgba(255,255,255,0.02) 40px, rgba(255,255,255,0.02) 80px
+    );
+  }
+  .site-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--gold-light);
+    letter-spacing: 0.04em;
+    position: relative;
+  }
+  .site-header .subtitle {
+    font-family: 'Source Serif 4', serif;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(240,208,128,0.7);
+    font-size: 1rem;
+    margin-top: 6px;
+    position: relative;
+  }
+  .ornament {
+    color: var(--gold);
+    font-size: 1.4rem;
+    margin: 0 10px;
+    opacity: 0.7;
+  }
+
+  /* CONTAINER */
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+  }
+
+  /* ALUMNO CARD */
+  .alumno-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin-bottom: 36px;
+    box-shadow: 0 2px 8px var(--shadow);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .alumno-card label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--blue-mid);
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-family: 'Source Serif 4', serif;
+  }
+  .alumno-card input {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid var(--border);
+    background: transparent;
+    font-family: 'Source Serif 4', serif;
+    font-size: 1rem;
+    color: var(--ink);
+    padding: 6px 2px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .alumno-card input:focus { border-bottom-color: var(--blue-mid); }
+
+  /* BLOQUE SECTION */
+  .bloque {
+    margin-bottom: 48px;
+  }
+  .bloque-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--blue-deep);
+  }
+  .bloque-num {
+    background: var(--blue-deep);
+    color: var(--gold-light);
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem;
+    padding: 4px 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .bloque-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--blue-deep);
+    font-weight: 700;
+  }
+
+  /* ACTIVIDAD */
+  .actividad {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px var(--shadow);
+  }
+  .act-header {
+    background: var(--parchment);
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .act-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    font-weight: 700;
+    white-space: nowrap;
+    line-height: 1.4;
+  }
+  .act-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--blue-deep);
+    line-height: 1.5;
+  }
+  .act-instruccion {
+    font-size: 0.85rem;
+    color: #555;
+    font-style: italic;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+  .act-body { padding: 20px; }
+
+  /* PREGUNTA */
+  .pregunta {
+    margin-bottom: 24px;
+  }
+  .pregunta:last-child { margin-bottom: 0; }
+  .pregunta-enunciado {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 10px;
+    padding-left: 16px;
+    border-left: 3px solid var(--gold-light);
+  }
+  .pregunta-enunciado strong { color: var(--blue-deep); }
+
+  textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 10px 12px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.9rem;
+    color: var(--ink);
+    background: var(--cream);
+    resize: vertical;
+    min-height: 70px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    line-height: 1.6;
+  }
+  textarea:focus {
+    border-color: var(--blue-mid);
+    box-shadow: 0 0 0 3px rgba(45,89,134,0.1);
+    background: white;
+  }
+
+  /* TABLA V/F */
+  .vf-table { width: 100%; border-collapse: collapse; }
+  .vf-table td, .vf-table th {
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    font-size: 0.88rem;
+    vertical-align: middle;
+  }
+  .vf-table th {
+    background: var(--blue-deep);
+    color: var(--gold-light);
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    text-align: left;
+  }
+  .vf-table tr:nth-child(even) td { background: var(--parchment); }
+  .vf-options { display: flex; gap: 16px; }
+  .vf-options label {
+    display: flex; align-items: center; gap: 6px;
+    cursor: pointer; font-size: 0.88rem;
+  }
+  .vf-options input[type=radio] { accent-color: var(--blue-deep); }
+
+  /* TABLA CATEGORIAS */
+  .cat-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  .cat-table th {
+    background: var(--blue-deep); color: var(--gold-light);
+    padding: 9px 10px; text-align: left;
+    font-family: 'Playfair Display', serif; font-weight: 400;
+    border: 1px solid var(--blue-mid);
+  }
+  .cat-table td {
+    padding: 6px 8px; border: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .cat-table tr:nth-child(even) td { background: var(--parchment); }
+  .cat-table td:first-child {
+    font-weight: 600; color: var(--blue-deep);
+    background: #eef3f8; font-style: italic;
+  }
+  .cat-table select, .cat-table input[type=text] {
+    width: 100%; border: 1px solid var(--border);
+    padding: 5px 8px; font-family: 'Source Serif 4', serif;
+    font-size: 0.83rem; background: white; border-radius: 2px;
+    color: var(--ink); outline: none;
+  }
+  .cat-table select:focus, .cat-table input[type=text]:focus {
+    border-color: var(--blue-mid);
+  }
+
+  /* SINTAGMAS TABLE */
+  .sint-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  .sint-table th {
+    background: var(--blue-deep); color: var(--gold-light);
+    padding: 9px 10px; text-align: left;
+    font-family: 'Playfair Display', serif; font-weight: 400;
+    border: 1px solid var(--blue-mid);
+  }
+  .sint-table td {
+    padding: 7px 8px; border: 1px solid var(--border); vertical-align: middle;
+  }
+  .sint-table tr:nth-child(even) td { background: var(--parchment); }
+  .sint-table td:first-child {
+    font-style: italic; color: var(--blue-deep); font-weight: 600;
+    background: var(--blue-light);
+  }
+  .sint-table input[type=text], .sint-table select {
+    width: 100%; border: 1px solid var(--border);
+    padding: 5px 7px; font-family: 'Source Serif 4', serif;
+    font-size: 0.83rem; border-radius: 2px; outline: none;
+    background: white; color: var(--ink);
+  }
+
+  /* SEGMENTACIÓN */
+  .seg-item {
+    margin-bottom: 20px;
+    padding: 14px 16px;
+    background: var(--blue-light);
+    border-left: 4px solid var(--blue-mid);
+    border-radius: 0 3px 3px 0;
+  }
+  .seg-frase {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--blue-deep);
+    margin-bottom: 10px;
+  }
+  .seg-frase span.palabra {
+    display: inline-block;
+    margin: 0 2px;
+  }
+  .seg-input {
+    width: 100%;
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.88rem;
+    border-radius: 3px;
+    background: white;
+    outline: none;
+    color: var(--ink);
+  }
+  .seg-input:focus { border-color: var(--blue-mid); }
+  .seg-label {
+    font-size: 0.78rem;
+    color: #666;
+    margin-bottom: 5px;
+    font-style: italic;
+  }
+
+  /* MODELO */
+  .modelo-box {
+    background: #f9f5e8;
+    border: 1px dashed var(--gold);
+    border-radius: 3px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    font-size: 0.88rem;
+  }
+  .modelo-box .modelo-tag {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .modelo-box p { line-height: 1.7; color: #444; }
+  .modelo-box strong { color: var(--blue-deep); }
+
+  /* FEEDBACK */
+  .feedback-area {
+    margin-top: 10px;
+    padding: 12px 16px;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .feedback-area.ok {
+    background: var(--green-soft);
+    border-left: 4px solid #4caf50;
+    color: #2e7d32;
+    display: block;
+  }
+  .feedback-area.error {
+    background: var(--red-soft);
+    border-left: 4px solid #e53935;
+    color: #b71c1c;
+    display: block;
+  }
+  .feedback-area.parcial {
+    background: #fff8e1;
+    border-left: 4px solid #ffc107;
+    color: #6d4c00;
+    display: block;
+  }
+  .feedback-area.loading {
+    background: var(--blue-light);
+    border-left: 4px solid var(--blue-mid);
+    color: var(--blue-deep);
+    display: block;
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* BUTTONS */
+  .btn-corregir {
+    background: var(--blue-deep);
+    color: var(--gold-light);
+    border: none;
+    padding: 9px 22px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.88rem;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-top: 10px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-corregir:hover { background: var(--blue-mid); }
+  .btn-corregir:active { transform: scale(0.98); }
+  .btn-corregir:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .btn-enviar {
+    display: block;
+    width: 100%;
+    max-width: 340px;
+    margin: 40px auto 0;
+    background: var(--gold);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+    transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 3px 10px rgba(184,134,11,0.3);
+  }
+  .btn-enviar:hover { background: #a07808; }
+  .btn-enviar:active { transform: scale(0.98); }
+  .btn-enviar:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* SUCCESS */
+  .success-panel {
+    text-align: center;
+    padding: 60px 20px;
+    display: none;
+  }
+  .success-panel .check { font-size: 3rem; margin-bottom: 16px; }
+  .success-panel h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--blue-deep);
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+  }
+  .success-panel p { color: #555; font-size: 0.95rem; }
+
+  /* EXPAND7 */
+  .exp-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 180px;
+    gap: 8px;
+    margin-bottom: 10px;
+    align-items: center;
+    font-size: 0.88rem;
+  }
+  .exp-base {
+    font-style: italic;
+    font-weight: 600;
+    color: var(--blue-deep);
+    padding: 7px 10px;
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+  }
+
+  @media (max-width: 600px) {
+    .alumno-card { grid-template-columns: 1fr; }
+    .exp-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1><span class="ornament">✦</span>El Príncipe Feliz<span class="ornament">✦</span></h1>
+  <p class="subtitle">Oscar Wilde &nbsp;·&nbsp; Actividades de lengua &nbsp;·&nbsp; 2.º ESO</p>
+</header>
+
+<div class="container">
+
+  <!-- DATOS ALUMNO -->
+  <div class="alumno-card">
+    <div>
+      <label>Nombre y apellidos</label>
+      <input type="text" id="nombre" placeholder="Escribe tu nombre completo">
+    </div>
+    <div>
+      <label>Grupo</label>
+      <input type="text" id="grupo" placeholder="Ej: 2ºA">
+    </div>
+  </div>
+
+  <!-- ===== BLOQUE I ===== -->
+  <div class="bloque">
+    <div class="bloque-header">
+      <div class="bloque-num">Bloque I</div>
+      <div class="bloque-title">Comprensión lectora</div>
+    </div>
+
+    <!-- ACT 1 -->
+    <div class="actividad">
+      <div class="act-header">
+        <div class="act-num">1.</div>
+        <div>
+          <div class="act-title">Preguntas de comprensión literal</div>
+          <div class="act-instruccion">Responde con información directa del texto.</div>
+        </div>
+      </div>
+      <div class="act-body">
+
+        <div class="pregunta">
+          <div class="pregunta-enunciado">¿Dónde estaba situada la estatua del Príncipe Feliz y cómo era físicamente?</div>
+          <textarea id="r1a" rows="3" placeholder="Tu respuesta..."></textarea>
+          <button class="btn-corregir" onclick="corregir('r1a','comp_literal','¿Dónde estaba situada la estatua del Príncipe Feliz y cómo era físicamente? Respuesta esperada: estaba sobre una columna en la parte más alta de la ciudad; estaba revestida de oro, tenía dos zafiros por ojos y un rubí rojo en el puño de la espada.')">Corregir</button>
+          <div class="feedback-area" id="fb_r1a"></div>
+        </div>
+
+        <div class="pregunta">
+          <div class="pregunta-enunciado">¿Por qué se llamaba el Príncipe Feliz? ¿Qué ocurre ahora que es una estatua?</div>
+          <textarea id="r1b" rows="3" placeholder="Tu respuesta..."></textarea>
+          <button class="btn-corregir" onclick="corregir('r1b','comp_literal','¿Por qué se llamaba Príncipe Feliz y qué le pasa ahora? Respuesta esperada: se llamaba así porque cuando vivía vivía en el Palacio de la Despreocupación y no conocía las lágrimas. Ahora llora porque desde su pedestal ve las miserias de la ciudad.')">Corregir</button>
+          <div class="feedback-area" id="fb_r1b"></div>
+        </div>
+
+        <div class="pregunta">
+          <div class="pregunta-enunciado">¿Cuáles son los tres objetos que el Príncipe entrega a través de la golondrina? ¿A quién va destinado cada uno?</div>
+          <textarea id="r1c" rows="4" placeholder="Tu respuesta..."></textarea>
+          <button class="btn-corregir" onclick="corregir('r1c','comp_literal','Los tres objetos y sus destinatarios: 1) el rubí del puño de la espada → a la mujer costurera cuyo hijo estaba enfermo con fiebre. 2) el primer ojo (zafiro) → al joven estudiante que pasaba frío y hambre en su buhardilla. 3) el segundo ojo (zafiro) → a la niña vendedora de cerillas a quien su padre iba a pegar.')">Corregir</button>
+          <div class="feedback-area" id="fb_r1c"></div>
+        </div>
+
+        <div class="pregunta">
+          <div class="pregunta-enunciado">¿Cómo y cuándo muere la golondrina? ¿Qué sucede con la estatua en ese mismo instante?</div>
+          <textarea id="r1d" rows="3" placeholder="Tu respuesta..."></textarea>
+          <button class="btn-corregir" onclick="corregir('r1d','comp_literal','La golondrina muere de frío al llegar el invierno, cae a los pies del Príncipe tras besarle en los labios. En ese mismo instante la coraza de plomo del corazón de la estatua se parte en dos.')">Corregir</button>
+          <div class="feedback-area" id="fb_r1d"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ACT 2 -->
+    <div class="actividad">
+      <div class="act-header">
+        <div class="act-num">2.</div>
+        <div>
+          <div class="act-title">Comprensión inferencial</div>
+          <div class="act-instruccion">Interpreta el texto: la respuesta no está copiada directamente, hay que razonarla.</div>
+        </div>
+      </div>
+      <div class="act-body">
+
+        <div class="pregunta">
+          <div class="pregunta-enunciado">¿Por qué crees que el Príncipe lloraba al ver la ciudad? ¿Qué contraste hay entre su vida anterior y lo que ve ahora?</div>
+          <textarea id="r2a" rows="4" placeholder="Tu respuesta..."></textarea>
+          <button class="btn-corregir" onclick="corregir('r2a','inferencial','El Príncipe lloraba porque desde su pedestal puede ver el sufrimiento de los pobres, algo que antes no conocía porque vivía protegido en el Palacio de la Despreocupación. El contraste es entre la ignorancia feliz de su vida pasada y la conciencia dolorosa que tiene ahora.')">Corregir</button>
+          <div class="feedback-area" id="fb_r2a"></div>
+        </div>
+
+        <div class="pregunta">
+          <div class="pregunta-enunciado">La golondrina debía ir a Egipto, pero se queda. ¿Qué la retiene? ¿Qué dice esto sobre su carácter?</div>
+          <textarea id="r2b" rows="4" placeholder="Tu respuesta..."></textarea>
+          <button class="btn-corregir" onclick="corregir('r2b','inferencial','La retiene el amor y la compasión que siente por el Príncipe y por los pobres. Esto muestra que es generosa, leal y capaz de sacrificarse por los demás, incluso a costa de su propia vida.')">Corregir</button>
+          <div class="feedback-area" id="fb_r2b"></div>
+        </div>
+
+        <div class="pregunta">
+          <div class="pregunta-enunciado">Al final, Dios pide «las dos cosas más preciosas de la ciudad» y el ángel trae el corazón de plomo y el pájaro muerto. ¿Por qué son las más valiosas?</div>
+          <textarea id="r2c" rows="4" placeholder="Tu respuesta..."></textarea>
+          <button class="btn-corregir" onclick="corregir('r2c','inferencial','Son valiosas no por su material sino por lo que representan: la bondad, el amor desinteresado y el sacrificio por los demás. El corazón de plomo simboliza la generosidad del Príncipe y la golondrina muerta el amor leal que la llevó a sacrificar su vida.')">Corregir</button>
+          <div class="feedback-area" id="fb_r2c"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ACT 3 V/F -->
+    <div class="actividad">
+      <div class="act-header">
+        <div class="act-num">3.</div>
+        <div>
+          <div class="act-title">Verdadero o falso</div>
+          <div class="act-instruccion">Marca V o F. Si es falsa, escribe la corrección en la casilla de la derecha.</div>
+        </div>
+      </div>
+      <div class="act-body">
+        <table class="vf-table">
+          <thead>
+            <tr>
+              <th style="width:40%">Afirmación</th>
+              <th style="width:15%">V / F</th>
+              <th>Corrección (solo si es falsa)</th>
+            </tr>
+          </thead>
+          <tbody id="vf-body">
+          </tbody>
+        </table>
+        <button class="btn-corregir" style="margin-top:16px" onclick="corregirVF()">Corregir todas</button>
+        <div class="feedback-area" id="fb_vf"></div>
+      </div>
+    </div>
+
+  </div><!-- /bloque I -->
+
+  <!-- ===== BLOQUE II ===== -->
+  <div class="bloque">
+    <div class="bloque-header">
+      <div class="bloque-num">Bloque II</div>
+      <div class="bloque-title">Categorías gramaticales y sintagmas</div>
+    </div>
+
+    <!-- ACT 4 -->
+    <div class="actividad">
+      <div class="act-header">
+        <div class="act-num">4.</div>
+        <div>
+          <div class="act-title">Clasifica las palabras del texto</div>
+          <div class="act-instruccion">Selecciona la categoría gramatical y escribe una breve justificación.</div>
+        </div>
+      </div>
+      <div class="act-body">
+        <table class="cat-table" id="cat-table">
+          <thead>
+            <tr>
+              <th style="width:18%">Palabra</th>
+              <th style="width:30%">Categoría</th>
+              <th>Justificación</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <button class="btn-corregir" style="margin-top:16px" onclick="corregirCat()">Corregir</button>
+        <div class="feedback-area" id="fb_cat"></div>
+      </div>
+    </div>
+
+    <!-- ACT 5 -->
+    <div class="actividad">
+      <div class="act-header">
+        <div class="act-num">5.</div>
+        <div>
+          <div class="act-title">Forma sintagmas</div>
+          <div class="act-instruccion">Construye un sintagma con cada palabra e indica de qué tipo es (SN, SV, SA, SAdv, SPrep).</div>
+        </div>
+      </div>
+      <div class="act-body" id="act5-body"></div>
+    </div>
+
+    <!-- ACT 6 -->
+    <div class="actividad">
+      <div class="act-header">
+        <div class="act-num">6.</div>
+        <div>
+          <div class="act-title">Analiza estos sintagmas del texto</div>
+          <div class="act-instruccion">Indica el núcleo, el tipo de sintagma y los complementos o modificadores.</div>
+        </div>
+      </div>
+      <div class="act-body">
+        <table class="sint-table" id="sint-table">
+          <thead>
+            <tr>
+              <th style="width:32%">Sintagma</th>
+              <th style="width:18%">Núcleo</th>
+              <th style="width:18%">Tipo</th>
+              <th>Complementos</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <button class="btn-corregir" style="margin-top:16px" onclick="corregirSint()">Corregir</button>
+        <div class="feedback-area" id="fb_sint"></div>
+      </div>
+    </div>
+
+    <!-- ACT 7 -->
+    <div class="actividad">
+      <div class="act-header">
+        <div class="act-num">7.</div>
+        <div>
+          <div class="act-title">Amplía los sintagmas</div>
+          <div class="act-instruccion">Amplía cada sintagma añadiendo palabras e indica qué categoría gramatical tienen las que has añadido. Fíjate en el modelo.</div>
+        </div>
+      </div>
+      <div class="act-body">
+        <div class="modelo-box">
+          <div class="modelo-tag">★ Modelo resuelto</div>
+          <p><strong>la estatua</strong> → <em>la estatua dorada del Príncipe Feliz</em><br>
+          He añadido: <em>dorada</em> (adjetivo) y <em>del Príncipe Feliz</em> (complemento del nombre)</p>
+        </div>
+        <div id="act7-body"></div>
+        <button class="btn-corregir" onclick="corregirAct7()">Corregir</button>
+        <div class="feedback-area" id="fb_act7"></div>
+      </div>
+    </div>
+
+    <!-- ACT 8 -->
+    <div class="actividad">
+      <div class="act-header">
+        <div class="act-num">8.</div>
+        <div>
+          <div class="act-title">¿Dónde termina un sintagma y empieza otro?</div>
+          <div class="act-instruccion">Pon corchetes para separar los sintagmas e indica de qué tipo es cada uno. No hay verbos: fíjate en qué palabras forman una unidad de significado.</div>
+        </div>
+      </div>
+      <div class="act-body">
+        <div class="modelo-box">
+          <div class="modelo-tag">★ Modelo resuelto</div>
+          <p><strong>«sobre una columna alta en la parte más alta de la ciudad»</strong><br>
+          → <em>[sobre una columna alta] [en la parte más alta de la ciudad]</em><br>
+          SPrep &nbsp;/&nbsp; SPrep</p>
+        </div>
+        <div id="act8-body"></div>
+        <button class="btn-corregir" onclick="corregirAct8()">Corregir</button>
+        <div class="feedback-area" id="fb_act8"></div>
+      </div>
+    </div>
+
+  </div><!-- /bloque II -->
+
+  <!-- ENVIAR -->
+  <button class="btn-enviar" id="btn-enviar" onclick="enviarTodo()">Enviar respuestas</button>
+
+  <div class="success-panel" id="success-panel">
+    <div class="check">✦</div>
+    <h2>¡Actividades enviadas!</h2>
+    <p>Tu profesora ha recibido todas tus respuestas.<br>Revisa el feedback de cada actividad antes de cerrar esta página.</p>
+  </div>
+
+</div><!-- /container -->
+
+<script>
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycbyR9zqcfKffffkrX9G3X9gRwS9J_gT2OhrpMs8NpPSkSJZ0o8LHK8ZxEdjX-tAqSVwbBA/exec";
+
+// ---- DATOS ----
+const vfData = [
+  { id: "vf1", af: "La golondrina vivía dentro de la estatua del Príncipe.", correct: "F", corr: "La golondrina se cobijó debajo de la estatua, no dentro." },
+  { id: "vf2", af: "El rubí fue enviado a un joven estudiante que pasaba frío.", correct: "F", corr: "El rubí fue para la mujer costurera cuyo hijo estaba enfermo. El estudiante recibió el primer zafiro." },
+  { id: "vf3", af: "La estatua quedó sin ojos y sin oro porque se los robaron.", correct: "F", corr: "Los ojos y el oro los entregó el propio Príncipe a través de la golondrina para ayudar a los pobres." },
+  { id: "vf4", af: "El corazón de plomo era tan precioso que no pudo fundirse en el horno.", correct: "V", corr: "" },
+  { id: "vf5", af: "Al final del cuento, el alcalde admira la belleza de la estatua.", correct: "F", corr: "El alcalde la encuentra andrajosa y fea, sin rubí ni ojos ni oro, y ordena derribarla." },
+];
+
+const catData = [
+  { pal: "estatua",  cat: "sustantivo",    just: "Designa un objeto, es el núcleo del SN." },
+  { pal: "revestida", cat: "adjetivo",     just: "Modifica al sustantivo, concuerda en género y número." },
+  { pal: "un",       cat: "determinante",  just: "Artículo indeterminado que introduce el SN." },
+  { pal: "lloraba",  cat: "verbo",         just: "Expresa acción, núcleo del SV; está conjugado." },
+  { pal: "miserias", cat: "sustantivo",    just: "Nombre común que designa una realidad." },
+  { pal: "pobres",   cat: "adjetivo",      just: "Aquí modifica a un sustantivo; puede sustantivarse." },
+  { pal: "allá",     cat: "adverbio",      just: "Indica lugar; no varía en género ni número." },
+  { pal: "aunque",   cat: "conjunción",    just: "Nexo que une proposiciones con valor concesivo." },
+  { pal: "apenada",  cat: "adjetivo",      just: "Participa en función adjetival, modifica a la golondrina." },
+  { pal: "se",       cat: "pronombre",     just: "Forma pronominal átona, acompaña al verbo." },
+];
+
+const categorias = ["-- Elige --","sustantivo","adjetivo","determinante","pronombre","verbo","adverbio","preposición","conjunción"];
+
+const sintData = [
+  { sint: "la estatua del Príncipe Feliz", nucleo: "estatua",  tipo: "SN",   comp: "del Príncipe Feliz (complemento del nombre)" },
+  { sint: "muy cansada",                   nucleo: "cansada",  tipo: "SA",   comp: "muy (adverbio modificador del adjetivo)" },
+  { sint: "una pobre mujer",               nucleo: "mujer",    tipo: "SN",   comp: "una (determinante), pobre (adjetivo)" },
+  { sint: "volaba por la ciudad",          nucleo: "volaba",   tipo: "SV",   comp: "por la ciudad (complemento circunstancial)" },
+  { sint: "el ojo de zafiro",              nucleo: "ojo",      tipo: "SN",   comp: "el (determinante), de zafiro (complemento del nombre)" },
+];
+const tiposSint = ["-- Elige --","SN","SV","SA","SAdv","SPrep"];
+
+const act7Data = [
+  { base: "el rubí",     tipo: "SN",   hint: "Puedes añadir un adjetivo o un complemento del nombre." },
+  { base: "lloraba",     tipo: "SV",   hint: "Puedes añadir un complemento circunstancial." },
+  { base: "triste",      tipo: "SA",   hint: "Puedes añadir un adverbio que lo modifique." },
+  { base: "allá abajo",  tipo: "SAdv", hint: "Puedes añadir otro adverbio o una preposición." },
+];
+
+const act8Data = [
+  { frase: "el corazón de plomo roto entre la basura",          solucion: "[el corazón de plomo] [roto] [entre la basura]",          tipos: "SN / SA / SPrep" },
+  { frase: "los ojos del Príncipe Feliz arrasados de lágrimas", solucion: "[los ojos del Príncipe Feliz] [arrasados de lágrimas]",    tipos: "SN / SA" },
+  { frase: "la pobre golondrina muy cansada",                   solucion: "[la pobre golondrina] [muy cansada]",                      tipos: "SN / SA" },
+  { frase: "el rubí rojo del puño de su espada",                solucion: "[el rubí rojo del puño de su espada]",                     tipos: "SN (todo es uno: rubí con sus modificadores encajados)" },
+];
+
+// ---- BUILD VF TABLE ----
+const vfBody = document.getElementById("vf-body");
+vfData.forEach(item => {
+  const tr = document.createElement("tr");
+  tr.innerHTML = `
+    <td>${item.af}</td>
+    <td>
+      <div class="vf-options">
+        <label><input type="radio" name="${item.id}" value="V"> V</label>
+        <label><input type="radio" name="${item.id}" value="F"> F</label>
+      </div>
+    </td>
+    <td><input type="text" id="corr_${item.id}" placeholder="Solo si es falsa..."></td>
+  `;
+  vfBody.appendChild(tr);
+});
+
+// ---- BUILD CAT TABLE ----
+const catBody = document.querySelector("#cat-table tbody");
+catData.forEach((item, i) => {
+  const tr = document.createElement("tr");
+  tr.innerHTML = `
+    <td>${item.pal}</td>
+    <td>
+      <select id="cat_sel_${i}">
+        ${categorias.map(c => `<option>${c}</option>`).join("")}
+      </select>
+    </td>
+    <td><input type="text" id="cat_just_${i}" placeholder="Justifica brevemente..."></td>
+  `;
+  catBody.appendChild(tr);
+});
+
+// ---- BUILD ACT5 ----
+const act5words = ["golondrina","revestida","llorar","cerca","sobre"];
+const act5body = document.getElementById("act5-body");
+act5words.forEach((w, i) => {
+  act5body.innerHTML += `
+    <div class="pregunta">
+      <div class="pregunta-enunciado"><strong>${w}</strong></div>
+      <div style="display:grid;grid-template-columns:1fr 140px;gap:10px">
+        <input type="text" id="act5_sint_${i}" style="border:1px solid var(--border);padding:8px 10px;font-family:'Source Serif 4',serif;font-size:0.9rem;border-radius:3px;outline:none" placeholder="Escribe tu sintagma...">
+        <select id="act5_tipo_${i}" style="border:1px solid var(--border);padding:8px;font-family:'Source Serif 4',serif;font-size:0.88rem;border-radius:3px">
+          ${tiposSint.map(t=>`<option>${t}</option>`).join("")}
+        </select>
+      </div>
+      <button class="btn-corregir" onclick="corregirAct5(${i},'${w}')">Corregir</button>
+      <div class="feedback-area" id="fb_act5_${i}"></div>
+    </div>
+  `;
+});
+
+// ---- BUILD SINT TABLE ----
+const sintBody = document.querySelector("#sint-table tbody");
+sintData.forEach((item, i) => {
+  const tr = document.createElement("tr");
+  tr.innerHTML = `
+    <td>${item.sint}</td>
+    <td><input type="text" id="sint_nuc_${i}" placeholder="Núcleo..."></td>
+    <td>
+      <select id="sint_tipo_${i}">
+        ${tiposSint.map(t=>`<option>${t}</option>`).join("")}
+      </select>
+    </td>
+    <td><input type="text" id="sint_comp_${i}" placeholder="Complementos..."></td>
+  `;
+  sintBody.appendChild(tr);
+});
+
+// ---- BUILD ACT7 ----
+const act7body = document.getElementById("act7-body");
+act7Data.forEach((item, i) => {
+  act7body.innerHTML += `
+    <div style="margin-bottom:18px">
+      <div class="exp-row">
+        <div class="exp-base">${item.base}</div>
+        <input type="text" class="seg-input" id="act7_exp_${i}" placeholder="Amplía el sintagma...">
+        <input type="text" class="seg-input" id="act7_cat_${i}" placeholder="¿Qué añadiste?">
+      </div>
+      <div style="font-size:0.78rem;color:#888;font-style:italic;margin-top:2px;padding-left:168px">${item.hint}</div>
+    </div>
+  `;
+});
+
+// ---- BUILD ACT8 ----
+const act8body = document.getElementById("act8-body");
+act8Data.forEach((item, i) => {
+  act8body.innerHTML += `
+    <div class="seg-item">
+      <div class="seg-frase">«${item.frase}»</div>
+      <div class="seg-label">Escribe los sintagmas entre corchetes:</div>
+      <input type="text" class="seg-input" id="act8_seg_${i}" placeholder="[...] [...]">
+      <div class="seg-label" style="margin-top:8px">Tipo de cada sintagma:</div>
+      <input type="text" class="seg-input" id="act8_tip_${i}" placeholder="SN / SA / ...">
+    </div>
+  `;
+});
+
+// ---- API CALL ----
+async function llamarIA(prompt, feedbackId) {
+  const fb = document.getElementById(feedbackId);
+  fb.className = "feedback-area loading";
+  fb.textContent = "Analizando tu respuesta...";
+
+  try {
+    const resp = await fetch(SHEETS_URL, {
+      method: "POST",
+      body: JSON.stringify({ tipo: "correccion", prompt })
+    });
+    const text = await resp.text();
+    const parsed = JSON.parse(text);
+    fb.className = `feedback-area ${parsed.nivel}`;
+    fb.textContent = parsed.comentario;
+  } catch(e) {
+    fb.className = "feedback-area parcial";
+    fb.textContent = "No se ha podido conectar con el corrector automático. Guarda tu respuesta y consulta con tu profesora.";
+  }
+}
+
+// ---- CORREGIR FUNCIONES ----
+function corregir(inputId, tipo, criterio) {
+  const val = document.getElementById(inputId).value.trim();
+  if (!val) { alert("Escribe tu respuesta antes de corregir."); return; }
+  const prompt = `Pregunta tipo: ${tipo}. Criterio de corrección: ${criterio}. Respuesta del alumno: "${val}"`;
+  llamarIA(prompt, "fb_" + inputId);
+}
+
+function corregirVF() {
+  const respuestas = vfData.map(item => {
+    const sel = document.querySelector(`input[name="${item.id}"]:checked`);
+    const corr = document.getElementById(`corr_${item.id}`).value.trim();
+    return `Afirmación: "${item.af}" | Respuesta: ${sel ? sel.value : "sin marcar"} | Corrección dada: "${corr}" | Correcto: ${item.correct}${item.correct==="F" ? " — corrección esperada: "+item.corr : ""}`;
+  }).join("\n");
+  const prompt = `El alumno ha resuelto un ejercicio de Verdadero/Falso sobre el cuento El Príncipe Feliz. Evalúa el conjunto y señala qué ha acertado y qué ha fallado.\n${respuestas}`;
+  llamarIA(prompt, "fb_vf");
+}
+
+function corregirCat() {
+  const respuestas = catData.map((item, i) => {
+    const sel = document.getElementById(`cat_sel_${i}`).value;
+    const just = document.getElementById(`cat_just_${i}`).value.trim();
+    return `Palabra: "${item.pal}" | Categoría dada: ${sel} | Correcta: ${item.cat} | Justificación dada: "${just}"`;
+  }).join("\n");
+  const prompt = `El alumno ha clasificado palabras según su categoría gramatical. Evalúa el conjunto señalando aciertos y errores de forma didáctica.\n${respuestas}`;
+  llamarIA(prompt, "fb_cat");
+}
+
+function corregirAct5(i, palabra) {
+  const sint = document.getElementById(`act5_sint_${i}`).value.trim();
+  const tipo = document.getElementById(`act5_tipo_${i}`).value;
+  if (!sint) { alert("Escribe el sintagma antes de corregir."); return; }
+  const prompt = `El alumno tenía que construir un sintagma con la palabra "${palabra}" e indicar su tipo. Ha escrito: "${sint}" y ha marcado el tipo: "${tipo}". Evalúa si el sintagma está bien construido y si el tipo es correcto según la NGLE.`;
+  llamarIA(prompt, `fb_act5_${i}`);
+}
+
+function corregirSint() {
+  const respuestas = sintData.map((item, i) => {
+    const nuc = document.getElementById(`sint_nuc_${i}`).value.trim();
+    const tipo = document.getElementById(`sint_tipo_${i}`).value;
+    const comp = document.getElementById(`sint_comp_${i}`).value.trim();
+    return `Sintagma: "${item.sint}" | Núcleo dado: "${nuc}" (correcto: ${item.nucleo}) | Tipo dado: ${tipo} (correcto: ${item.tipo}) | Complementos dados: "${comp}"`;
+  }).join("\n");
+  const prompt = `El alumno ha analizado sintagmas del cuento El Príncipe Feliz según la NGLE. Evalúa núcleo, tipo y complementos de cada uno.\n${respuestas}`;
+  llamarIA(prompt, "fb_sint");
+}
+
+function corregirAct7() {
+  const respuestas = act7Data.map((item, i) => {
+    const exp = document.getElementById(`act7_exp_${i}`).value.trim();
+    const cat = document.getElementById(`act7_cat_${i}`).value.trim();
+    return `Base: "${item.base}" (tipo ${item.tipo}) | Ampliación dada: "${exp}" | Categorías añadidas: "${cat}"`;
+  }).join("\n");
+  const prompt = `El alumno tenía que ampliar sintagmas de distintos tipos (SN, SV, SA, SAdv) del cuento El Príncipe Feliz e indicar la categoría gramatical de las palabras añadidas. Evalúa si las ampliaciones son coherentes y si las categorías son correctas.\n${respuestas}`;
+  llamarIA(prompt, "fb_act7");
+}
+
+function corregirAct8() {
+  const respuestas = act8Data.map((item, i) => {
+    const seg = document.getElementById(`act8_seg_${i}`).value.trim();
+    const tip = document.getElementById(`act8_tip_${i}`).value.trim();
+    return `Fragmento: "${item.frase}" | Segmentación dada: "${seg}" | Tipos dados: "${tip}" | Solución esperada: ${item.solucion} (${item.tipos})`;
+  }).join("\n");
+  const prompt = `El alumno ha segmentado fragmentos sin verbo en sintagmas usando corchetes, siguiendo criterios semánticos según la NGLE. Evalúa si los corchetes están bien puestos y si los tipos son correctos. Explica brevemente dónde está el error si lo hay.\n${respuestas}`;
+  llamarIA(prompt, "fb_act8");
+}
+
+// ---- ENVIAR TODO ----
+async function enviarTodo() {
+  const nombre = document.getElementById("nombre").value.trim();
+  const grupo = document.getElementById("grupo").value.trim();
+  if (!nombre) { alert("Escribe tu nombre antes de enviar."); return; }
+
+  const btn = document.getElementById("btn-enviar");
+  btn.disabled = true;
+  btn.textContent = "Enviando...";
+
+  // Recoge todas las respuestas
+  function getVal(id) {
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : "";
+  }
+  function getRadio(name) {
+    const sel = document.querySelector(`input[name="${name}"]:checked`);
+    return sel ? sel.value : "";
+  }
+
+  const payload = {
+    nombre, grupo,
+    r1: JSON.stringify({
+      r1a: getVal("r1a"), r1b: getVal("r1b"),
+      r1c: getVal("r1c"), r1d: getVal("r1d")
+    }),
+    f1: document.getElementById("fb_r1a")?.textContent || "",
+    r2: JSON.stringify({
+      r2a: getVal("r2a"), r2b: getVal("r2b"), r2c: getVal("r2c")
+    }),
+    f2: document.getElementById("fb_r2a")?.textContent || "",
+    r3: JSON.stringify(vfData.map(item => ({
+      af: item.af,
+      resp: getRadio(item.id),
+      corr: getVal(`corr_${item.id}`)
+    }))),
+    f3: document.getElementById("fb_vf")?.textContent || "",
+    r4: JSON.stringify(catData.map((item,i) => ({
+      pal: item.pal,
+      cat: document.getElementById(`cat_sel_${i}`)?.value || "",
+      just: getVal(`cat_just_${i}`)
+    }))),
+    f4: document.getElementById("fb_cat")?.textContent || "",
+    r5: JSON.stringify(act5words.map((w,i) => ({
+      palabra: w,
+      sint: getVal(`act5_sint_${i}`),
+      tipo: document.getElementById(`act5_tipo_${i}`)?.value || ""
+    }))),
+    f5: "",
+    r6: JSON.stringify(sintData.map((item,i) => ({
+      sint: item.sint,
+      nucleo: getVal(`sint_nuc_${i}`),
+      tipo: document.getElementById(`sint_tipo_${i}`)?.value || "",
+      comp: getVal(`sint_comp_${i}`)
+    }))),
+    f6: document.getElementById("fb_sint")?.textContent || "",
+    r7: JSON.stringify(act7Data.map((item,i) => ({
+      base: item.base,
+      exp: getVal(`act7_exp_${i}`),
+      cat: getVal(`act7_cat_${i}`)
+    }))),
+    f7: document.getElementById("fb_act7")?.textContent || "",
+    r8: JSON.stringify(act8Data.map((item,i) => ({
+      frase: item.frase,
+      seg: getVal(`act8_seg_${i}`),
+      tip: getVal(`act8_tip_${i}`)
+    }))),
+    f8: document.getElementById("fb_act8")?.textContent || "",
+  };
+
+  try {
+    await fetch(SHEETS_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    btn.style.display = "none";
+    document.getElementById("success-panel").style.display = "block";
+  } catch(e) {
+    btn.disabled = false;
+    btn.textContent = "Enviar respuestas";
+    alert("Error al enviar. Comprueba tu conexión e inténtalo de nuevo.");
+  }
+}
+</script>
+</body>
+</html>
